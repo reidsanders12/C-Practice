@@ -8,6 +8,30 @@ struct Item{
 
 Item* addItem(Item *inventory, int *currentSize, int *capacity){
 	//Adds a new item, resizes the heap if needed
+	if(currentSize >= capacity){
+		//doubles the capacity
+		*capacity = (*capacity == 0) ? 2 : *capacity * 2;
+		struct Item *temp = realloc(inventory, (*capacity) * sizeof(struct Item));
+		if(temp == NULL){
+			printf("Memory reallocation failed!\n");
+			return inventory;
+		}
+	inventory = temp;
+	}
+
+
+	//Prompt the user for new item details
+	printf("Enter Item ID: ");
+	scanf("%d", &inventory[*currentSize].Id);
+
+	printf("Enter Item Price: ");
+	scanf("%f", &inventory[*currentSize].price);
+
+	printf("Enter Item Quantity: ");
+	scanf("%d", &inventory[*currentSize].price);
+
+
+	(*currentSize)++;
 	return inventory;
 }
 
