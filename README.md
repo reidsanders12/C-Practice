@@ -6,7 +6,7 @@
 This file was the start, me just playing around making sure I am able to run c from my terminal
 
 
-## Project1.c
+## Project1
 **Dynamic Inventory Tracker**
 
 A command-line inventory management system in C designed to practice dynamic memory allocation, pointer manipulation, and custom structures without fixed-size array limitations.
