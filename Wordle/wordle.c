@@ -70,7 +70,7 @@ void evaluateGuess(const char *target, const char *guess){
 		if(state[i] == 2){
 			printf("\033[1;32m[%c]\033[0m", toupper(guess[i]));
 		}else if (state[i] == 1){
-			printf("\033[1;30m[%c]\033[0m", toupper(guess[i]));
+			printf("\033[1;33m[%c]\033[0m", toupper(guess[i]));
 		}else{
 			printf("\033[1;30m[%c]\033[0m", toupper(guess[i]));
 		}
