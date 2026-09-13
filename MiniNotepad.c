@@ -51,6 +51,41 @@ void freeNotepad(char **lines, int lineCount){
 	free(lines);
 }
 
-int main(void){
-//Implement functions
+int main(void) {
+    char **lines = NULL;
+    int lineCount = 0;
+    int capacity = 0;
+    int choice;
+
+    do {
+        printf("\n--- Mini-Notepad Menu ---\n");
+        printf("1. Add Line\n");
+        printf("2. View Notepad\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input. Clearing stream...\n");
+            while (getchar() != '\n');
+            continue;
+        }
+
+        while (getchar() != '\n');
+
+        if (choice == 1) {
+            lines = addLine(lines, &lineCount, &capacity);
+        } else if (choice == 2) {
+            printNotepad(lines, lineCount);
+        } else if (choice == 3) {
+            printf("Saving buffer state and exiting...\n");
+        } else {
+            printf("Invalid choice. Please select 1, 2, or 3.\n");
+        }
+    } while (choice != 3);
+
+    freeNotepad(lines, lineCount);
+    lines = NULL;
+    printf("Memory freed successfully.\n");
+
+    return 0;
 }
