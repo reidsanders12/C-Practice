@@ -45,6 +45,10 @@ void printNotepad(char **lines, int lineCount){
 
 void freeNotepad(char **lines, int lineCount){
 //Frees every individual line string first, then frees the main lines array pointer to prevent leaks
+	for(int i = 0; i < lineCount; i++){
+		free(lines[i]);
+	}
+	free(lines);
 }
 
 int main(void){
