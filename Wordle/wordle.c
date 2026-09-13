@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
+#include <time.h>
 
 char** loadDictionary(const char *filename, int *wordCount){
 	FILE *file = fopen(filename, "r");
 	if(file == NULL){
-		printf("Error: Could not open dictionary file %s\n");
+		printf("Error: Could not open dictionary file %s\n", filename);
 		return NULL;
 	}
 
@@ -55,7 +55,7 @@ void evaluateGuess(const char *target, const char *guess){
 	}
 
 	for(int i = 0; i < 5; i++){
-		if(guessUsed[i])) continue;
+		if(guessUsed[i]) continue;
 		for(int j = 0; j < 5; j++){
 			if(!targetUsed[j] && guess[i] == target[j]){
 				state[i] = 1;
@@ -76,4 +76,64 @@ void evaluateGuess(const char *target, const char *guess){
 		}
 	}
 	printf("\n");
+}
+
+int main(void){
+	int wordCount = 0;
+	char **dictionary = loadDictionary("words.txt", &wordCount);
+
+	if(dictionary == NULL || wordCount == 0){
+		printf("Failed to load dictionary. Make sure 'words.txt' ecists!\n");
+		return 1;
+	}
+
+	srand((unsigned int) time(NULL));
+	char *target = dictionary[rand() % wordCount];
+
+	printf("Welcome to Cordle!\n");
+	printf("Guess the 5-letter word in 6 tries or less!\n\n");
+
+
+	int attempts = 6;
+	int won = 0;
+
+	for(int turn = 1; turn <= attempts; turn++){
+		char guess[32];
+		printf("Attempt %d/%d - Enter guess: ", turn, attempts);
+
+		if(scanf("%s", guess) != 1){
+			printf("Input error.\n");
+			break;
+		}
+
+		if(strlen(guess) != 5){
+			printf("Error: Guess must be exactly 5 letters.\n");
+			turn--;
+			continue;
+		}
+
+		for(int i = 0; i < 5; i++){
+			guess[i] = tolower(guess[i]);
+		}
+
+		evaluateGuess(target, guess);
+
+		if(strcmp(target, guess) == 0){
+			printf("\nCongratulations! You guessed the word: %s\n", target);
+			won = 1;
+			break;
+		}
+	}
+
+	if(!won){
+		printf("\nGame Over! The target word was: %s\n", target);
+	}
+
+
+	for(int i = 0; i < wordCount; i++){
+		free(dictionary[i]);
+	}
+	free(dictionary);
+
+	return 0;
 }
