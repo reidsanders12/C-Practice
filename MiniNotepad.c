@@ -31,6 +31,16 @@ char** addLine(char **lines, int *lineCount, int *capacity){
 
 void printNotepad(char **lines, int lineCount){
 //Iterates through the line pointers and displays the current buffer with line numbers
+	if(lineCount == 0){
+		printf("\n[Notepad is currently empty]\n");
+		return;
+	}
+
+	printf("\n---Notepad Buffer---\n");
+	for(int i = 0; i < lineCount; i++){
+		printf("%3d | %s\n", i + 1, lines[i]);
+	}
+	printf("----------------------\n");
 }
 
 void freeNotepad(char **lines, int lineCount){
