@@ -1,17 +1,17 @@
 # C-Practice
 
 
-##TestFile.c
+#TestFile.c
 
 This file was the start, me just playing around making sure I am able to run c from my terminal
 
 
-##Project1.c
-###Dynamic Inventory Tracker
+#Project1.c
+**Dynamic Inventory Tracker**
 
 A command-line inventory management system in C designed to practice dynamic memory allocation, pointer manipulation, and custom structures without fixed-size array limitations.
 
-###Features
+**Features**
 
 - Dynamic Memory Resizing: Allocates heap memory at runtime and uses realloc to double capacity automatically as inventory grows.
 
@@ -20,7 +20,7 @@ A command-line inventory management system in C designed to practice dynamic mem
 - Memory Safety: Implements strict clean up routines to prevent memory leaks and avoids dangling pointers by resetting pointers to NULL.
 
 
-###Core Functions
+**Core Functions**
 
 ```
 struct Item* addItem(...)
