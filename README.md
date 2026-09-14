@@ -72,3 +72,32 @@ Iterates through row pointers to display formatted line numbers and text content
 void freeNotepad(...)
 ```
 Safely deallocates every individual string row and the root pointer array to prevent memory leaks
+
+
+## Project 3
+**Minishell**
+
+A custom command-line shell built in C designed to practice operating system process management, system calls, string tokenization, and UNIX process lifecycles.
+
+**Features**
+
+- REPL: Continuously reads user input from standard input, strips control characters, and handles EOF gracefully
+
+- Process Forking & Execution: Spawns independent child processes using fork() and executes external system binaries via execvp() using dynamic argument arrays
+
+- Process Synchronization: Employs waitpid() in the parent process loop to block execution until the spawned child command finishes running
+
+- Built-in Command Management: Intercepts internal state commands like cd and exit directly within the parent process scope
+
+**Core Functions**
+```
+void parse_input(...)
+```
+Parses raw input lines using strtok() to split strings by spaces and tabs, populating and null-terminating the argument array required for binary execution
+
+```
+int main()
+```
+Manages the primary interactive REPL loop, reads input streams with fgets(), evaluates build in command overrides, and orchestrates the fork-exec-wait workflow
+
+
